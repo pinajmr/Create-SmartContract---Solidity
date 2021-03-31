@@ -1,13 +1,13 @@
 pragma solidity ^0.5.1;
 
 contract Timelock {
-  address payable public beneficiary;
+    
+    address payable public beneficiary;//Who can withdraw
+    uint256 public releaseTime; //When?
 
-  uint256 public releaseTime;
-
-  constructor(
-    address payable _beneficiary,
-    uint256 _releaseTime
+    constructor(
+        address payable _beneficiary,
+        uint256 _releaseTime
   )
     public
     payable
@@ -22,3 +22,4 @@ contract Timelock {
     address(beneficiary).transfer(address(this).balance);
   }
 }
+
