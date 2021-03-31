@@ -30,3 +30,11 @@ contract TokenTimelock {
     token.transfer(beneficiary, amount);
   }
 }
+
+// Field 
+// Token: address the contract token 
+// beneficiary: address beneficiary
+// releaseTime: Epochtime
+
+//Then,  in the Token.sol add addres contract and amount 
+// When the time is good, you can took release

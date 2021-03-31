@@ -1,8 +1,8 @@
 pragma solidity ^0.5.1;
 
 contract Token {
-  string public name = "DApp Token";
-  string public symbol = "DAPP";
+  string public name = "Piña Token";
+  string public symbol = "PINA";
   uint256 public decimals = 18;
   uint256 public totalSupply;
   mapping(address => uint256) public balanceOf;
@@ -12,7 +12,7 @@ contract Token {
   event Approval(address indexed owner, address indexed spender, uint256 value);
 
   constructor() public {
-    totalSupply = 1000000 * (10 ** decimals);
+    totalSupply = 2000000 * (10 ** decimals);
     balanceOf[msg.sender] = totalSupply;
   }
 
