@@ -1,25 +1,31 @@
 // Declare version 
-pragma solidity ^0.5.1;
+pragma solidity ^0.8.4;
 
-//Declare smart contract
-contract MyContract{
+//Declare Smart Contract
+contract MyContract {
 
     // Declaring the variable like this:
-    string value;
+    string pina;
+    string wife;
     
     //default value, it also must have the public visibility
-    constructor() public {
-        value = "MyValue";
+    constructor() {
+        pina = unicode" 🍍 ";
+        wife = "Sarah";
     }
     
-    function get() public view returns(string memory){
-        return value;
+    function get() public  view returns(string memory, string memory){
+        return (pina,wife);
     }
     
-    function set(string memory _value) public{
-        value = _value;
+    function set(string memory _pina ,string memory _wife) public {
+        pina = _pina;
+        wife = _wife;
     }
 }
 
-// If a wanna the value is constant
-//  string public constant value = "MyValue"
+/* If a wanna the value is constant
+string public constant value = "MyValue"
+*/
+
+// SPDX-License-Identifier:UNLICENSED

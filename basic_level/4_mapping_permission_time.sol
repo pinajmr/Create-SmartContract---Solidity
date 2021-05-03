@@ -1,44 +1,50 @@
-pragma solidity 0.5.1;
+pragma solidity ^0.8.4;
 
-contract MyContract{
-    uint256 public peopleCount = 0;
-    mapping(uint => Person) public people;// Mapping which allow us to store key_value pairs
-    uint256 openingTime; //type timestamp
-    address owner;//te owner of this smart contract
+contract MyContract {
+    //A place to store this person struct
+    Person[] public people;
+    uint256 public peopleCount;
+    uint256 private openingTime; //type timestamp
     
-    //this modifier is for onlyAdmin
-    modifier onlyOwner(){
-        require(msg.sender == owner);
-        _;
+    /*struct:Allow you define your own data types.
+    You can basically model any kind of data 
+    You want with arbitrary attributes of varying data types
+    */
+    struct Person{
+        string _firstName;
+        string _lastName;
+        uint _age;
+    
+    }
+    
+    constructor ()  {
+    openingTime = 2219410305;//This value is Election day
     }
 
-    modifier onlyWhileOpen(){
+    modifier onlyWhileOpen() {
         require(block.timestamp >= openingTime );
         _;
     }
 
-    struct Person{
-        uint _id;
-        string _firstName;
-        string _lastName;
+    function isOld(uint _age) private pure returns(bool) {
+        if (_age >= 18) {
+            return true;
+        } else {
+            return false;
+        }
+        
     }
     
-    constructor() public{
-        owner = msg.sender;
-        openingTime = 1617045074;//You have update this value
-    }
-
-    function addPerson(string memory _firstName, string memory _lastName) public onlyOwner onlyWhileOpen{
-        incrementCount();
-        people[peopleCount] = Person(peopleCount,_firstName,_lastName);
-    }
-    
-      function updatePerson(uint _id, string memory _firstName, string memory _lastName) public onlyOwner{
-        people[_id] = Person(peopleCount,_firstName,_lastName);
-    }
-
-    //private function
-    function incrementCount() internal{
-        peopleCount += 1;
+    function addPerson(string memory _firstName, string memory _lastName, uint _age) public onlyWhileOpen returns(string memory) {
+        if (isOld(_age) == true) {
+            people.push(Person(_firstName,_lastName,_age));
+            peopleCount ++;
+            return "Correct !. Welcome to the voting. ";
+        } else {
+            return "It's not possible, your're a miniur. ";
+        }
     }
 }
+
+
+// SPDX-License-Identifier:UNLICENSED

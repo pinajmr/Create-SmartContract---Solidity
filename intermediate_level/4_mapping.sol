@@ -1,8 +1,8 @@
 pragma solidity ^0.6.0;
 
 contract MyContract{
-    //mapping
-    // mapping(Key => Value)
+    /*mapping
+    mapping(Key => Value) */ 
     
     mapping(uint => string) public names;
     mapping(uint => Book) public books;
