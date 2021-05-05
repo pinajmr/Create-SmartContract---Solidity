@@ -1,14 +1,20 @@
-pragma solidity 0.5.1;
+pragma solidity 0.8.4;
 
 import "./Math.sol";
 
 
 contract Mycontract {
-    uint256 public division;
-    uint256 public suma;
+    int256 public division;
+    int256 public sum;
+    int256 public multiplication;
+    int256 public substraction;
     
-    function calculate(uint _value1, uint _value2) public{
+    function calculate(int _value1, int _value2) public {
         division = Math.divide(_value1, _value2);
-        suma = Math.sum(_value1,_value2);
+        sum = Math.sum(_value1,_value2);
+        multiplication = Math.multiplication(_value1,_value2);
+        substraction = Math.substraction(_value1,_value2);
     }
 }
+
+// SPDX-License-Identifier: UNLICENSED

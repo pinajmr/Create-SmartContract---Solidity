@@ -1,4 +1,4 @@
-pragma solidity 0.5.1;
+pragma solidity 0.8.4;
 
 //1. Deploy first ERC20Token and copy contract address
 //2. In the first field introduce the wallat for deposits and the second field the contract address copy before.
@@ -10,30 +10,35 @@ contract ERC20Token {
     string public name ="PINA";
     mapping(address => uint256) public balances;
     
-    function mint() public {
-        //balances[msg.sender] ++; msg.sender is actually referencing
+   
+    function mint() external {
         //the address of MyContract, for this reason we must
         //use tx.origin
-        balances[tx.origin] += 1;
+        balances[tx.origin] ++;
         
     }
 }
 
-contract MyContract{
+contract MyContract {
     
     address payable wallet;
     address public token;
+    event Receive(address,uint);
     
-    constructor(address payable _wallet, address _token) public {
+    constructor (address payable _wallet, address _token) {
         wallet = _wallet;
         token = _token;
     }
     
-    function() external payable{
+    fallback () external payable {
         buyToken();
     }
     
-    function buyToken() public  payable{
+    receive() external payable {
+       emit Receive(msg.sender,msg.value); 
+    }
+    
+    function buyToken() public  payable {
         ERC20Token _token = ERC20Token(address(token));
         _token.mint();
         //Is equal to:
@@ -43,3 +48,5 @@ contract MyContract{
         wallet.transfer(msg.value);
     }
 }
+
+// SPDX-License-Identifier:UNLICENSED 

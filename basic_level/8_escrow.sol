@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.8.4;
 
 contract Escrow{
     
@@ -9,18 +9,18 @@ contract Escrow{
     
     //Only agent can send ether
     //Is the deploy contract
-    modifier onlyAgent(){
+    modifier onlyAgent() {
         require(msg.sender == agent);
         _;
         
     }
     
-    constructor() public{
+    constructor() {
         agent = msg.sender;
     }
     
     //Person who is pays the house
-    function deposit(address payee) public payable{
+    function deposit(address payee) public payable {
         uint256 amount = msg.value;
         deposits[payee] = deposits[payee] + amount;
     }
@@ -32,3 +32,5 @@ contract Escrow{
         payee.transfer(payment);
     }
 }
+
+// SPDX-License-Identifier:UNLICENSED 

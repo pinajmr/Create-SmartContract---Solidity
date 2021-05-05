@@ -1,28 +1,29 @@
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.4;
 
 // Simplified version
 contract Counter{
     uint public count = 0;
     
-    function incrementCount() public{
+    function incrementCount() public {
         count ++;
     }
 }
 
 //First version
 
-// contract Counter{
-//     uint count;
+contract Counter2 {
+    uint count;
     
-//     constructor() public{
-//         count = 0;
-//     }
+    constructor() {
+        count = 0;
+    }
     
-//     function getCount() public view returns(uint){
-//         return count;
-//     }
+    function getCount() public view returns(uint){
+        return count;
+    }
     
-//     function incrementCount() public{
-//         count = count + 1;
-//     }
-// }
+    function incrementCount() public{
+        count = count + 1;
+    }
+}
+// SPDX-License-Identifier:UNLICENSED 

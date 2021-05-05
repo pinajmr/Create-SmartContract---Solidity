@@ -1,4 +1,4 @@
-pragma solidity 0.5.1;
+pragma solidity ^0.8.4;
 
 import "./SafeMath.sol";
 
@@ -8,8 +8,7 @@ contract Mycontract {
     uint256 public value;
     
     
-    function calculate(uint _value1, uint _value2) public{
+    function calculate (uint _value1, uint _value2) public{
         value = _value1.div(_value2);
-       
     }
 }
